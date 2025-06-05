@@ -52,11 +52,13 @@ class BCTrainConfig:
     max_latent_action: float = 0.25  # Search space for latent safety encodings (after tanh squashing)
     log_std_min: float = -10.0  # Min log std for policy safety encoder (before tanh squashing)
     log_std_max: float = 2.0    # Max log std for policy safety encoder (before tanh squashing)
-    safe_qc_vc_threshold: float = 0.02  # Threshold for safe Q and V value; 0.02 for Metadrive, +999.0 for others
+    safe_qc_vc_threshold: float = 999.0  # Threshold for safe Q and V value; 0.02 for Metadrive, +999.0 for others
 
 
 @dataclass
 class BCCarCircleConfig(BCTrainConfig):
+    vae_clamper: float = 0.60
+    max_latent_action: float = 0.60
     pass
 
 
@@ -72,6 +74,8 @@ class BCDroneRunConfig(BCTrainConfig):
     # training params
     task: str = "OfflineDroneRun-v0"
     episode_len: int = 200
+    vae_clamper: float = 0.60
+    max_latent_action: float = 0.60
 
 
 @dataclass
@@ -79,6 +83,8 @@ class BCDroneCircleConfig(BCTrainConfig):
     # training params
     task: str = "OfflineDroneCircle-v0"
     episode_len: int = 300
+    vae_clamper: float = 0.60
+    max_latent_action: float = 0.60
 
 
 @dataclass
@@ -86,6 +92,8 @@ class BCCarRunConfig(BCTrainConfig):
     # training params
     task: str = "OfflineCarRun-v0"
     episode_len: int = 200
+    vae_clamper: float = 0.60
+    max_latent_action: float = 0.60
 
 
 @dataclass
@@ -93,6 +101,8 @@ class BCAntCircleConfig(BCTrainConfig):
     # training params
     task: str = "OfflineAntCircle-v0"
     episode_len: int = 500
+    vae_clamper: float = 0.60
+    max_latent_action: float = 0.60
 
 
 @dataclass
@@ -100,6 +110,8 @@ class BCBallRunConfig(BCTrainConfig):
     # training params
     task: str = "OfflineBallRun-v0"
     episode_len: int = 100
+    vae_clamper: float = 0.60
+    max_latent_action: float = 0.60
 
 
 @dataclass
@@ -107,6 +119,8 @@ class BCBallCircleConfig(BCTrainConfig):
     # training params
     task: str = "OfflineBallCircle-v0"
     episode_len: int = 200
+    vae_clamper: float = 0.60
+    max_latent_action: float = 0.60
 
 
 @dataclass
@@ -128,6 +142,8 @@ class BCCarCircle1Config(BCTrainConfig):
     # training params
     task: str = "OfflineCarCircle1Gymnasium-v0"
     episode_len: int = 500
+    vae_clamper: float = 0.25
+    max_latent_action: float = 0.25
 
 
 @dataclass
@@ -262,6 +278,7 @@ class BCEasySparseConfig(BCTrainConfig):
     # training params
     task: str = "OfflineMetadrive-easysparse-v0"
     episode_len: int = 1000
+    safe_qc_vc_threshold: float = 0.02
 
 
 @dataclass
@@ -269,6 +286,7 @@ class BCEasyMeanConfig(BCTrainConfig):
     # training params
     task: str = "OfflineMetadrive-easymean-v0"
     episode_len: int = 1000
+    safe_qc_vc_threshold: float = 0.02
 
 
 @dataclass
@@ -276,6 +294,7 @@ class BCEasyDenseConfig(BCTrainConfig):
     # training params
     task: str = "OfflineMetadrive-easydense-v0"
     episode_len: int = 1000
+    safe_qc_vc_threshold: float = 0.02
 
 
 @dataclass
@@ -283,6 +302,7 @@ class BCMediumSparseConfig(BCTrainConfig):
     # training params
     task: str = "OfflineMetadrive-mediumsparse-v0"
     episode_len: int = 1000
+    safe_qc_vc_threshold: float = 0.02
 
 
 @dataclass
@@ -290,6 +310,7 @@ class BCMediumMeanConfig(BCTrainConfig):
     # training params
     task: str = "OfflineMetadrive-mediummean-v0"
     episode_len: int = 1000
+    safe_qc_vc_threshold: float = 0.02
 
 
 @dataclass
@@ -297,6 +318,7 @@ class BCMediumDenseConfig(BCTrainConfig):
     # training params
     task: str = "OfflineMetadrive-mediumdense-v0"
     episode_len: int = 1000
+    safe_qc_vc_threshold: float = 0.02
 
 
 @dataclass
@@ -304,6 +326,7 @@ class BCHardSparseConfig(BCTrainConfig):
     # training params
     task: str = "OfflineMetadrive-hardsparse-v0"
     episode_len: int = 1000
+    safe_qc_vc_threshold: float = 0.02
 
 
 @dataclass
@@ -311,6 +334,7 @@ class BCHardMeanConfig(BCTrainConfig):
     # training params
     task: str = "OfflineMetadrive-hardmean-v0"
     episode_len: int = 1000
+    safe_qc_vc_threshold: float = 0.02
 
 
 @dataclass
@@ -318,6 +342,7 @@ class BCHardDenseConfig(BCTrainConfig):
     # training params
     task: str = "OfflineMetadrive-harddense-v0"
     episode_len: int = 1000
+    safe_qc_vc_threshold: float = 0.02
 
 
 BC_DEFAULT_CONFIG = {
