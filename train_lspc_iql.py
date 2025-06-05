@@ -138,7 +138,7 @@ def train(args: BCTrainConfig):
         iql_trainer.train_one_step(observations, next_observations, actions, rewards, costs, done)
 
         # evaluation
-        if (step + 1) % args.eval_every == 0 or step == args.max_timesteps - 1:
+        if (step + 1) % args.eval_every == 0 or step == args.max_timesteps - 1 or step == 0:
             ret, cost, length, ret_std, cost_std, length_std = iql_trainer.evaluate(env, args.eval_episodes)
             logger.store(tab="eval", Cost=cost, Reward=ret, Length=length)
             logger.store(tab="eval", Cost_std=cost_std, Reward_std=ret_std, Length_std=length_std)
